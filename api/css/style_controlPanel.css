@@ -1,0 +1,538 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variáveis Globais */
+:root {
+    --primary-bg: #021527;
+    --primary-text: #333;
+    --secondary-bg: #f9f9f9;
+    --accent-color: #d94140;
+    --hover-accent: #b32f2b;
+    --secondary-accent-color: #4CAF50;
+    --secondary-hover-color: #1c681f; 
+    --font-family: 'Sora', sans-serif;
+    --card-shadow: 0px -1px 17px -4px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--secondary-bg);
+}
+
+#bg {
+    background: url('../assets/default_transparent_1000x1000.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Botão Toggle */
+.sidebar-toggle {
+    font-size: 24px;
+    color: var(--accent-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    top: 3px;
+    left: 3px;
+    z-index: 1500;
+    display: none; 
+}
+
+/* Sidebar inicialmente oculta */
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    background-color: var(--primary-bg);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    transition: left 0.4s ease, opacity 0.2s ease;
+    z-index: 1;
+}
+
+.sidebar.show {
+    left: 0; /* Move a sidebar para dentro da tela */
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    /* Para dispositivos móveis, a sidebar ocupará a tela inteira */
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        left: -100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .sidebar-toggle {
+        display: block; /* Exibe o botão de toggle no mobile */
+    }
+}
+
+.sidebar .logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    transition: background 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: var(--accent-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.main-content{
+    flex: 1;
+    padding: 20px;
+    background-color: var(--secondary-bg);
+    transition: margin-left 0.3s ease;
+    margin-left: 250px;
+}
+
+/* Apenas aplica o shift em telas maiores */
+@media (min-width: 769px) {
+    .main-content.shift {
+        margin-left: 250px;
+    }
+}
+
+/* Área Principal de Conteúdo  */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-info h1 {
+    font-size: 28px;
+    color: var(--primary-text);
+}
+
+.header-info p {
+    font-size: 16px;
+    color: var(--primary-text);
+}
+
+.user-info {
+    font-size: 20px;
+    color: var(--primary-text);
+    display: flex;
+    align-items: center;
+}
+
+.user-info i {
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .header-info {
+        margin-top: 80px;
+        text-align: center;
+        justify-content: center;
+        margin-left: 15%;
+    }
+
+    .header-info h1 {
+        font-size: 22px;
+    }
+
+    .header-info p {
+        font-size: 13px;
+    }
+
+    .user-info {
+        margin-top: -90px;
+        font-size: small;
+        margin-right: 10px;
+    }
+}
+
+/* Home */
+.content-section {
+    padding: 20px;
+}
+
+.content-section h2 {
+    margin-bottom: 20px;
+}
+
+#home {
+    padding: 40px 20px;
+    background-color: var(--secondary-bg);
+    text-align: center;
+}
+
+#home h2 {
+    font-size: 25px;
+    color: var(--primary-text);
+    margin-bottom: 10px;
+}
+
+#home p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: var(--primary-text);
+}
+
+/* Background and Cards */
+.summary-cards {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 10px;
+}
+
+.card {
+    flex: 1;
+    padding: 15px;
+    background: var(--secondary-bg);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.card-title {
+    border-radius: 8px;
+    padding: 6px;
+    margin-bottom: 6px;
+    color: #fff;
+    background-color: var(--primary-bg);
+}
+
+@media (max-width: 768px) {
+    #home p {
+        font-size: 15px;
+    }
+
+    .summary-cards {
+        flex-direction: column;
+    }
+}
+
+/* Dashboard Geral */
+.dashboard-cards {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    flex-wrap: wrap;
+}
+
+.chart-size {
+    max-width: 300px;
+    max-height: 300px;
+    margin: 20px;
+    flex: 1 1 auto;
+}
+
+@media (max-width: 768px) {
+    #dashboard h2 {
+        font-size: 22px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .dashboard-cards {
+        flex-direction: column;
+    }
+}
+
+/* Gestão de Pedidos e Clientes */
+#searchInput, #searchClienteInput {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 30%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table thead {
+    background-color: var(--primary-bg);
+    color: #fff;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+table th:hover {
+    background-color: var(--hover-accent);
+}
+
+/* Botões de ação das tabelas */
+.btn-acao {
+    padding: 5px 10px;
+    margin: 0 3px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.4s;
+}
+
+.btn-acao:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+.btn-acao.editar {
+    background-color: var(--secondary-accent-color); 
+}
+
+.btn-acao.editar:hover {
+    background-color: var(--secondary-hover-color);
+}
+
+.btn-acao.excluir {
+    background-color: var(--accent-color);
+}
+
+.btn-acao.excluir:hover {
+    background-color: var(--hover-accent);
+}
+
+
+#pagination, #paginationClientes {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#pagination button, #paginationClientes button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: none;
+    background-color: var(--primary-bg);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+#pagination button:hover, #paginationClientes button:hover {
+    background-color: var(--hover-accent);
+}
+
+/* Estilos para o popup/modal */
+
+    /* O fundo transparente da tela inteira */
+    .modal {
+        display: none; /* Inicialmente oculto */
+        position: fixed;
+        z-index: 1; /* Fica por cima de outros elementos */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+    }
+
+    /* A caixa de conteúdo do modal */
+    .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 30%; /* Tamanho do popup */
+        box-shadow: var(--card-shadow);
+        border-radius: 8px;
+    }
+
+    /* O botão de fechar */
+    .close-btn {
+        color: #aaa;
+        float: right;
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+        color: #053461;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Estilo do formulário dentro do modal */
+    #updateStatusForm {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #newStatus {
+        padding: 5px;
+    }
+
+    #updateStatusForm select,
+    #updateStatusForm button {
+        margin-top: 10px;
+    }
+
+    #updateStatusForm button {
+        background-color: var(--primary-bg);
+        color: var(--secondary-bg);
+        border-radius: 4px;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    #updateStatusForm button:hover {
+        background-color: #053461;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Quando o modal é aberto */
+    .modal.show {
+        display: block;
+    }
+
+
+@media (max-width: 768px) {
+    table {
+    overflow-x: auto;
+    display: block;
+    }
+
+    #gestao-pedidos h2 {
+        font-size: 20px;
+    }
+
+    #cadastro-clientes h2 {
+        font-size: 20px;
+    }
+
+    #searchInput, #searchClienteInput {
+        width: 100%;
+    }
+
+    #pedidosTable, #clientesTable {
+        font-size: 12px;
+    }
+
+    .btn-acao {
+        margin-bottom: 2px;
+    }
+
+    .modal-content {
+        width: 80%;
+    }
+}
+
+/* Configurações de Frete */
+#configuracao-frete-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    gap: 10px;
+}
+
+#configuracao-frete-form label {
+    font-weight: bold;
+    color: var(--primary-text);
+}
+
+#configuracao-frete-form input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#configuracao-frete-form input[type="number"]:hover,
+#configuracao-frete-form input[type="number"]:focus {
+    border-color: var(--secondary-accent-color);
+    outline: none;
+}
+
+#configuracao-frete-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--secondary-accent-color);
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+#configuracao-frete-form button:hover {
+    background-color: var(--secondary-hover-color);
+}
+
+#mensagemConfirmacao {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    #configuracoes-frete h2 {
+        font-size: 20px;
+        margin-top: 30px;
+    }
+}
+
+

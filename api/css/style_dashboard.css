@@ -1,0 +1,617 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variáveis Globais */
+:root {
+    --primary-bg: #021527;
+    --primary-text: #333;
+    --secondary-bg: #f9f9f9;
+    --accent-color: #d94140;
+    --hover-accent: #b32f2b;
+    --secondary-accent-color: #4CAF50;
+    --secondary-hover-color: #1c681f; 
+    --font-family: 'Sora', sans-serif;
+    --card-shadow: 0px -1px 17px -4px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--secondary-bg);
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Botão Toggle */
+.sidebar-toggle {
+    font-size: 24px;
+    color: var(--accent-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    top: 3px;
+    left: 3px;
+    z-index: 1500;
+    display: none; 
+}
+
+/* Menu Lateral */
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    background-color: var(--primary-bg);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    transition: left 0.4s ease, opacity 0.2s ease;
+    z-index: 1;
+}
+
+.sidebar.show {
+    left: 0; /* Move a sidebar para dentro da tela */
+    opacity: 1;
+}
+
+.sidebar .logo h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+}
+
+.sidebar ul li a:hover {
+    background-color: var(--accent-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+@media (max-width: 768px) {
+    /* Para dispositivos móveis, a sidebar ocupará a tela inteira */
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        left: -100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+  
+
+    .sidebar-toggle {
+        display: block; /* Exibe o botão de toggle no mobile */
+    }
+}
+
+/* Apenas aplica o shift em telas maiores */
+@media (min-width: 769px) {
+    .main-content.shift {
+        margin-left: 250px;
+    }
+}
+
+/* Conteúdo Principal */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--secondary-bg);
+    transition: margin-left 0.3s ease;
+    margin-left: 250px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-info h1 {
+    font-size: 28px;
+    color: var(--primary-text);
+}
+
+.header-info p {
+    font-size: 16px;
+    color: var(--primary-text);
+}
+
+.user-info {
+    font-size: 20px;
+    color: var(--primary-text);
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .header-info {
+        margin-top: 80px;
+        text-align: center;
+        justify-content: center;
+        margin-left: 15%;
+    }
+
+    .header-info h1 {
+        font-size: 22px;
+    }
+
+    .header-info p {
+        font-size: 13px;
+    }
+
+    .user-info {
+        margin-top: -90px;
+        font-size: small;
+        margin-right: 10px;
+    }
+}
+
+/* Home */
+#home {
+    padding: 40px 20px;
+    background-color: var(--secondary-bg);
+    text-align: center;
+}
+
+#home h2 {
+    font-size: 25px;
+    color: var(--primary-text);
+    margin-bottom: 10px;
+}
+
+#home p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: var(--primary-text);
+}
+
+.options-container {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+}
+
+.option {
+    flex: 1;
+    max-width: 300px;
+    max-height: 400px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.7s;
+}
+
+.option:hover {
+    transform: scale(1.1);
+    z-index: 1;
+}
+
+.option img {
+    max-width: 250px;
+    margin-bottom: 20px;
+}
+
+.option h3 {
+    font-size: 22px;
+    color: var(--primary-text);
+    margin-bottom: 10px;
+}
+
+.option p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: var(--hover-accent);
+}
+
+@media (max-width: 768px) {
+    #home h2{
+        font-size: 20px;
+    }
+
+    #home p {
+        font-size: 13px;
+    }
+
+    .options-container {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .option {
+        width: 100%;  
+    }
+}
+
+
+/*  Meus Envios */
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.search-input {
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: var(--card-shadow);
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: none;
+}
+
+table th {
+    background-color: var(--primary-bg);
+    color: white;
+    cursor: pointer; 
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.pagination-btn {
+    padding: 10px 15px;
+    border: none;
+    margin: 0 5px;
+    background-color: var(--secondary-accent-color);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination-btn:hover {
+    background-color: var(--secondary-hover-color); 
+}
+
+#enviosPageNumber {
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    table {
+        overflow-x: auto;
+        display: block;
+    }
+
+    #meus-envios h2 {
+        font-size: 20px;
+        margin-top: 30px;
+    }
+
+    .search-input {
+        width: 100%;
+        font-size: 13px;
+    }
+
+    #enviosTable {
+        font-size: 12px;
+    }
+
+    .btn-acao.editar{
+        margin-bottom: 4px;
+    }
+
+    .pagination-btn {
+        font-size: 13px;
+    }
+}
+
+/* Botões de ação na tabela */
+.btn-acao {
+    padding: 5px 10px;
+    margin: 0 3px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.7em;
+    transition: background-color 0.4s;
+}
+
+.btn-acao.editar {
+    background-color: var(--secondary-accent-color); 
+}
+
+.btn-acao.editar:hover {
+    background-color: var(--secondary-hover-color);
+}
+
+.btn-acao.cancelar {
+    background-color: var(--accent-color);
+    margin-top: 2px;
+}
+
+.btn-acao.cancelar:hover {
+    background-color: var(--hover-accent);
+}
+
+/* Simulação de Frete */
+.frete-simulacao {
+    margin-top: 30px;
+}
+
+.frete-simulacao h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.frete-simulacao form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;  
+    box-shadow: var(--card-shadow);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--secondary-bg);
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--accent-color);
+}
+
+.btn-calcular {
+    width: 20%;
+    padding: 6px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.4s ease;
+}
+
+.btn-calcular:hover {
+    background-color: var(--hover-accent);
+}
+
+@media (max-width: 768px) {
+    .frete-simulacao form {
+        grid-template-columns: 1fr;
+    }
+
+    #freightForm input {
+        font-size: 13px;
+    }
+
+    .btn-calcular {
+        width: 100%;
+    }
+
+    .frete-simulacao h2{
+        font-size: 20px;
+    }
+}
+
+/* Orçamento do frete */
+.result-freight {
+    margin-top: 60px;
+    background-color: var(--secondary-bg);
+    color: #232224;
+    padding: 50px 15px;
+    text-align: left;
+    line-height: 150%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+  
+.result-freight h3 {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-text);
+}
+
+.button-result-freight {
+    width: 10%;
+    padding: 6px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.4s ease;
+}
+
+.button-result-freight:hover {
+    background-color: var(--hover-accent);
+}
+
+@media (max-width: 768px) {
+    .result-freight h3 {
+        font-size: 20px;
+    }
+
+    .result-freight p {
+        font-size: 14px;
+    }
+
+    .button-result-freight {
+        width: 100%;
+        margin-top: 5px;
+    }
+}  
+
+/* Minha conta */
+.conta-simulacao {
+    margin-top: 30px;
+}
+
+.conta-simulacao h2, .conta-simulacao h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: var(--primary-text);
+}
+
+.conta-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--secondary-bg);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+.btn-salvar {
+    width: 10%;
+    padding: 6px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.4s ease;
+    grid-column: span 2;
+}
+
+.btn-salvar:hover {
+    background-color: var(--hover-accent);
+}
+
+@media (max-width: 768px) {
+    .conta-simulacao h2{
+        margin-top: 60px;
+    }
+
+    .conta-form {
+        display: block;
+    }
+
+    .conta-form input {
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+
+    .conta-form label {
+        font-size: 13px;
+    }
+
+    .radio-container label {
+        display: block;
+    }
+
+    .radio-group p {
+        margin-bottom: 10px;
+    }
+
+    .btn-salvar {
+        width: 100%;
+        font-size: 15px;
+    }
+}
+
+/* Mensagem de Sucesso/Erro */
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #4CAF50; /* Cor verde para sucesso */
+    color: white;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
